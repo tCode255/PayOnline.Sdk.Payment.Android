@@ -6,7 +6,6 @@ import java.util.Locale;
 
 public final class PaymentLinkRequest {
 
-    private final String ENCODING = "UTF-8";
     private int merchantId;
     private String orderId;
     private double amount;
@@ -19,101 +18,59 @@ public final class PaymentLinkRequest {
     private String failUrl;
     private String customData;
 
-    /* Gets */
-    public int getMerchantId(){
-        return this.merchantId;
-    }
+    public int getMerchantId(){ return this.merchantId; }
 
-    public String getOrderId(){
-        return this.orderId;
-    }
+    public void setMerchantId(int value){ this.merchantId = value; }
 
-    public String getAmount(){
-        return String.format(Locale.US, "%.2f", this.amount);
-    }
+    public String getOrderId(){ return this.orderId; }
 
-    public String getCurrency(){
-        return this.currency;
-    }
+    public void setOrderId(String value) { this.orderId = value; }
 
-    public String getValidUntil(){
-        return this.validUntil;
-    }
+    public String getAmount(){ return String.format(Locale.US, "%.2f", this.amount); }
 
-    public String getOrderDescription(){
-        return this.orderDescription;
-    }
+    public void setAmount(double value){ this.amount = value; }
 
-    public String getPrivateSecurityKey(){
-        return this.privateSecurityKey;
-    }
+    public String getCurrency(){ return this.currency; }
 
-    public String getEmail(){
-        return this.email;
-    }
+    public void setCurrency(String value) { this.currency = value; }
 
-    public String getReturnUrl(){
-        return this.returnUrl;
-    }
+    public String getValidUntil(){ return this.validUntil; }
 
-    public String getFailUrl(){
-        return this.failUrl;
-    }
+    public void setValidUntil(String value) { this.validUntil = value; }
 
-    public String getCustomData(){
-        return this.customData;
-    }
+    public String getOrderDescription(){ return this.orderDescription; }
 
-    /* Sets */
-    public void setMerchantId(int value){
-        this.merchantId = value;
-    }
+    public void setOrderDescription(String value) { this.orderDescription = value; }
 
-    public void setOrderId(String value){
-        this.orderId = value;
-    }
+    public String getPrivateSecurityKey(){ return this.privateSecurityKey; }
 
-    public void setAmount(double value){
-        this.amount = value;
-    }
+    public void setPrivateSecurityKey(String value) { this.privateSecurityKey = value; }
 
-    public void setCurrency(String value){
-        this.currency = value;
-    }
+    public String getEmail(){ return this.email; }
 
-    public void setValidUntil(String value){
-        this.validUntil = value;
-    }
+    public void setEmail(String value) { this.email = value; }
 
-    public void setOrderDescription(String value) {
-        this.orderDescription = value;
-    }
+    public String getReturnUrl(){ return this.returnUrl; }
 
-    public void setPrivateSecurityKey(String value){
-        this.privateSecurityKey = value;
-    }
-
-    public void setEmail(String value){
-        this.email = value;
-    }
-
-    public void setReturnUrl(String value){
+    public void setReturnUrl(String value) throws PaymentClientException {
         try {
-            this.returnUrl = URLEncoder.encode(PayOnlineUtils.toUTF8(value), this.ENCODING);
+            this.returnUrl = URLEncoder.encode(value, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            this.returnUrl = null;
+            throw new PaymentClientException("Can't encoding value of 'ReturnUrl' parameter", e);
         }
     }
 
-    public void setFailUrl(String value){
+    public String getFailUrl(){ return this.failUrl; }
+
+    public void setFailUrl(String value) throws PaymentClientException {
         try {
-            this.failUrl = URLEncoder.encode(PayOnlineUtils.toUTF8(value), this.ENCODING);
+            this.failUrl = URLEncoder.encode(value, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            this.failUrl = null;
+            throw new PaymentClientException("Can't encoding value of 'FailUrl' parameter", e);
         }
     }
 
-    public void setCustomData(String value){
-        this.customData = value;
-    }
+    public String getCustomData(){ return this.customData; }
+
+    public void setCustomData(String value) { this.customData = value; }
 }

@@ -1,12 +1,9 @@
 package ru.payonline.sdk;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.Locale;
 
 public final class PayRequest {
 
-    private final String ENCODING = "UTF-8";
     private int merchantId;
     private String orderId;
     private double amount;
@@ -28,169 +25,139 @@ public final class PayRequest {
     private String issuer;
     private String customData;
 
-    /* Gets */
     public int getMerchantId() {
         return this.merchantId;
     }
 
-    public String getOrderId() {
-        return this.orderId;
+    public void setMerchantId(int value) {
+        this.merchantId = value;
+    }
+
+    public String getOrderId() { return this.orderId; }
+
+    public void setOrderId(String value) {
+        this.orderId = value;
     }
 
     public String getAmount() {
         return String.format(Locale.US, "%.2f", this.amount);
     }
 
-    public String getCurrency() {
-        return this.currency;
-    }
-
-    public String getOrderDescription() {
-        return this.orderDescription;
-    }
-
-    public String getPrivateSecurityKey() {
-        return this.privateSecurityKey;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public String getIp() {
-        return this.ip;
-    }
-
-    public String getCardHolderName() {
-        return this.cardHolderName;
-    }
-
-    public String getCardNumber() {
-        return this.cardNumber;
-    }
-
-    public String getCardExpDate() {
-        return this.cardExpDate;
-    }
-
-    public String getCardCvv() {
-        return this.cardCvv;
-    }
-
-    public String getCountry() {
-        return this.country;
-    }
-
-    public String getCity() {
-        return this.city;
-    }
-
-    public String getAddress() {
-        return this.address;
-    }
-
-    public String getZip() {
-        return this.zip;
-    }
-
-    public String getState() {
-        return this.state;
-    }
-
-    public String getPhone() {
-        return this.phone;
-    }
-
-    public String getIssuer() {
-        return this.issuer;
-    }
-
-    public String getCustom() {
-        return this.customData;
-    }
-
-    /* Sets */
-    public void setMerchantId(int value) {
-        this.merchantId = value;
-    }
-
-    public void setOrderId(String value) {
-        this.orderId = value;
-    }
-
     public void setAmount(double value) {
         this.amount = value;
+    }
+
+    public String getCurrency() {
+        return this.currency;
     }
 
     public void setCurrency(String value) {
         this.currency = value;
     }
 
-    public void setOrderDescription(String value) {
-        this.orderDescription = value;
+    public String getOrderDescription() {
+        return this.orderDescription;
+    }
+
+    public void setOrderDescription(String value) { this.orderDescription = value; }
+
+    public String getPrivateSecurityKey() {
+        return this.privateSecurityKey;
     }
 
     public void setPrivateSecurityKey(String value) {
         this.privateSecurityKey = value;
     }
 
+    public String getEmail() {
+        return this.email;
+    }
+
     public void setEmail(String value) {
         this.email = value;
+    }
+
+    public String getIp() {
+        return this.ip;
     }
 
     public void setIp(String value) {
         this.ip = value;
     }
 
-    public void setCardHolderName(String value) {
-        this.cardHolderName = PayOnlineUtils.toUTF8(value);
+    public String getCardHolderName() {
+        return this.cardHolderName;
+    }
+
+    public void setCardHolderName(String value) { this.cardHolderName = value; }
+
+    public String getCardNumber() {
+        return this.cardNumber;
     }
 
     public void setCardNumber(String value) {
         this.cardNumber = value;
     }
 
+    public String getCardExpDate() {
+        return this.cardExpDate;
+    }
+
     public void setCardExpDate(String value) {
         this.cardExpDate = value;
+    }
+
+    public String getCardCvv() {
+        return this.cardCvv;
     }
 
     public void setCardCvv(String value) {
         this.cardCvv = value;
     }
 
-    public void setCountry(String value) {
-        this.country = PayOnlineUtils.toUTF8(value);
+    public String getCountry() { return this.country; }
+
+    public void setCountry(String value) { this.country = value; }
+
+    public String getCity() {
+        return this.city;
     }
 
-    public void setCity(String value) {
-        this.city = PayOnlineUtils.toUTF8(value);
+    public void setCity(String value) { this.city = value; }
+
+    public String getAddress() {
+        return this.address;
     }
 
-    public void setAddress(String value) {
-        this.address = PayOnlineUtils.toUTF8(value);
+    public void setAddress(String value) { this.address = value; }
+
+    public String getZip() {
+        return this.zip;
     }
 
-    public void setZip(String value) {
-        this.zip = PayOnlineUtils.toUTF8(value);
+    public void setZip(String value) { this.zip = value; }
+
+    public String getState() {
+        return this.state;
     }
 
-    public void setState(String value) {
-        this.state = PayOnlineUtils.toUTF8(value);
+    public void setState(String value) { this.state = value; }
+
+    public String getPhone() {
+        return this.phone;
     }
 
-    public void setPhone(String value) {
-        try {
-            this.phone = URLEncoder.encode(PayOnlineUtils.toUTF8(value), this.ENCODING);
-        } catch (UnsupportedEncodingException e) {
-            this.phone = null;
-        }
+    public void setPhone(String value) { this.phone = value; }
+
+    public String getIssuer() {
+        return this.issuer;
     }
 
-    public void setIssuer(String value) {
-        this.issuer = PayOnlineUtils.toUTF8(value);
+    public void setIssuer(String value) { this.issuer = value; }
+
+    public String getCustom() {
+        return this.customData;
     }
 
-    public void setCustom(String value) {
-        this.customData = PayOnlineUtils.toUTF8(value);
-    }
+    public void setCustom(String value) { this.customData = value; }
 }

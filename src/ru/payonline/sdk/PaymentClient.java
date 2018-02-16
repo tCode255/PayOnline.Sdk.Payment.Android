@@ -92,7 +92,7 @@ public final class PaymentClient {
         try {
             uri = new URI(url.toString());
         } catch (Exception e){
-            throw new PaymentClientException("Error creating URI");
+            throw new PaymentClientException("There was an error creating URI", e);
         }
 
         return uri.toString();
@@ -103,7 +103,7 @@ public final class PaymentClient {
         query.put("MerchantId", String.valueOf(request.getMerchantId()));
         query.put("OrderId", request.getOrderId());
         query.put("Amount", request.getAmount());
-        query.put("Currency", request.getCurrency());
+        query.put("Currency", PayOnlineUtils.urlEncodeUTF8(request.getCurrency()));
 
         Map<String,String> signature = new LinkedHashMap<>(query);
         if (!PayOnlineUtils.stringIsNullOrWhiteSpace(request.getOrderDescription())) {
@@ -121,10 +121,10 @@ public final class PaymentClient {
         query.put("SecurityKey", securityKey);
 
         if (!PayOnlineUtils.stringIsNullOrWhiteSpace(request.getIp())) {
-            query.put("Ip", request.getIp());
+            query.put("Ip", PayOnlineUtils.urlEncodeUTF8(request.getIp()));
         }
         if (!PayOnlineUtils.stringIsNullOrWhiteSpace(request.getEmail())) {
-            query.put("Email", request.getEmail());
+            query.put("Email", PayOnlineUtils.urlEncodeUTF8(request.getEmail()));
         }
 
         query.put("CardHolderName", PayOnlineUtils.urlEncodeUTF8(request.getCardHolderName()));
@@ -133,25 +133,25 @@ public final class PaymentClient {
         query.put("CardCvv", request.getCardCvv());
 
         if (!PayOnlineUtils.stringIsNullOrWhiteSpace(request.getCountry())) {
-            query.put("Country", request.getCountry());
+            query.put("Country",PayOnlineUtils.urlEncodeUTF8(request.getCountry()));
         }
         if (!PayOnlineUtils.stringIsNullOrWhiteSpace(request.getCity())) {
-            query.put("City", request.getCity());
+            query.put("City", PayOnlineUtils.urlEncodeUTF8(request.getCity()));
         }
         if (!PayOnlineUtils.stringIsNullOrWhiteSpace(request.getAddress())) {
-            query.put("Address", request.getAddress());
+            query.put("Address", PayOnlineUtils.urlEncodeUTF8(request.getAddress()));
         }
         if (!PayOnlineUtils.stringIsNullOrWhiteSpace(request.getZip())) {
-            query.put("Zip", request.getZip());
+            query.put("Zip", PayOnlineUtils.urlEncodeUTF8(request.getZip()));
         }
         if (!PayOnlineUtils.stringIsNullOrWhiteSpace(request.getState())) {
-            query.put("State", request.getState());
+            query.put("State", PayOnlineUtils.urlEncodeUTF8(request.getState()));
         }
         if (!PayOnlineUtils.stringIsNullOrWhiteSpace(request.getPhone())) {
-            query.put("Phone", request.getPhone());
+            query.put("Phone", PayOnlineUtils.urlEncodeUTF8(request.getPhone()));
         }
         if (!PayOnlineUtils.stringIsNullOrWhiteSpace(request.getIssuer())) {
-            query.put("Issuer", request.getIssuer());
+            query.put("Issuer", PayOnlineUtils.urlEncodeUTF8(request.getIssuer()));
         }
 
         StringBuilder url = new StringBuilder();
@@ -162,7 +162,7 @@ public final class PaymentClient {
         try {
             uri = new URI(url.toString());
         } catch (Exception e){
-            throw new PaymentClientException("Error creating URI");
+            throw new PaymentClientException("There was an error creating API request", e);
         }
 
         String result = getResult(uri, query);
@@ -197,7 +197,7 @@ public final class PaymentClient {
         try {
             uri = new URI(url.toString());
         } catch (Exception e){
-            throw new PaymentClientException("Error creating URI");
+            throw new PaymentClientException("There was an error creating API request", e);
         }
 
         String result = getResult(uri, query);
@@ -209,7 +209,8 @@ public final class PaymentClient {
         try {
             return PayOnlineUtils.callApi(uri.toString(), PayOnlineUtils.createQueryString(query));
         } catch (IOException e) {
-            throw new PaymentClientException("Error when calling service");
+            e.printStackTrace();
+            throw new PaymentClientException("There was an error calling API service", e);
         }
     }
 }

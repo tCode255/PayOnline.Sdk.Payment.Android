@@ -9,53 +9,27 @@ public final class Process3DsRequest {
     private String privateSecurityKey;
     private String customData;
 
-    /* Gets */
-    public int getMerchantId() {
-        return this.merchantId;
-    }
+    public int getMerchantId() { return this.merchantId; }
 
-    public long getTransactionId() {
-        return this.transactionId;
-    }
+    public void setMerchantId(int value) { this.merchantId = value; }
 
-    public String getPaRes() {
-        return this.paRes;
-    }
+    public long getTransactionId() { return this.transactionId; }
 
-    public String getPd() {
-        return this.pd;
-    }
+    public void setTransactionId(long value) { this.transactionId = value; }
 
-    public String getPrivateSecurityKey() {
-        return this.privateSecurityKey;
-    }
+    public String getPaRes() { return this.paRes; }
 
-    public String getCustomData() {
-        return this.customData;
-    }
+    public void setPares(String value) { this.paRes = value; }
 
-    /* Sets */
-    public void setMerchantId(int value) {
-        this.merchantId = value;
-    }
+    public String getPd() { return this.pd; }
 
-    public void setTransactionId(long value) {
-        this.transactionId = value;
-    }
+    public void setPd(String value) { this.pd = value; }
 
-    public void setPares(String value) {
-        this.paRes = value;
-    }
+    public String getPrivateSecurityKey() { return this.privateSecurityKey; }
 
-    public void setPd(String value) {
-        this.pd = value;
-    }
+    public void setPrivateSecurityKey(String value) { this.privateSecurityKey = value; }
 
-    public void setPrivateSecurityKey(String value) {
-        this.privateSecurityKey = value;
-    }
+    public String getCustomData() { return this.customData; }
 
-    public void setCustomData(String value) {
-        this.customData = value;
-    }
+    public void setCustomData(String value) { this.customData = value; }
 }

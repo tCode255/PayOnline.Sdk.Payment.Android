@@ -19,42 +19,6 @@ public class PayResponse {
     private String pd;
     private String acsUrl;
 
-    public PayResponse(String v) {
-        Map<String, String> map = PayOnlineUtils.parseQueryString(v);
-        for (Map.Entry<String, String> entry : map.entrySet())
-        {
-            if (entry.getKey().equalsIgnoreCase("Id"))
-                this.id = Long.parseLong(entry.getValue().trim());
-            if (entry.getKey().equalsIgnoreCase("Operation"))
-                this.operation = entry.getValue().trim();
-            if (entry.getKey().equalsIgnoreCase("Code"))
-                this.code = Integer.parseInt(entry.getValue().trim());
-            if (entry.getKey().equalsIgnoreCase("Result"))
-                this.result = entry.getValue().trim();
-            if (entry.getKey().equalsIgnoreCase("Status"))
-                this.status = entry.getValue().trim();
-            if (entry.getKey().equalsIgnoreCase("errorCode"))
-                this.errorCode = Integer.parseInt(entry.getValue().trim());
-            if (entry.getKey().equalsIgnoreCase("Message"))
-                this.message = entry.getValue().trim();
-            if (entry.getKey().equalsIgnoreCase("rebillAnchor"))
-                this.rebillAnchor = entry.getValue().trim();
-            if (entry.getKey().equalsIgnoreCase("ipCountry"))
-                this.ipCountry = entry.getValue().trim();
-            if (entry.getKey().equalsIgnoreCase("binCountry"))
-                this.binCountry = entry.getValue().trim();
-            if (entry.getKey().equalsIgnoreCase("SpecialConditions"))
-                this.specialConditions = entry.getValue().trim();
-            if (entry.getKey().equalsIgnoreCase("PaReq"))
-                this.paReq = entry.getValue().trim();
-            if (entry.getKey().equalsIgnoreCase("PD"))
-                this.pd = entry.getValue().trim();
-            if (entry.getKey().equalsIgnoreCase("AcsUrl"))
-                this.acsUrl = entry.getValue().trim();
-        }
-    }
-
-    /* Gets */
     public long getId(){
         return this.id;
     }
@@ -109,5 +73,40 @@ public class PayResponse {
 
     public String getAcsUrl(){
         return this.acsUrl;
+    }
+
+    public PayResponse(String v) {
+        Map<String, String> map = PayOnlineUtils.parseQueryString(v);
+        for (Map.Entry<String, String> entry : map.entrySet())
+        {
+            if (entry.getKey().equalsIgnoreCase("Id"))
+                this.id = Long.parseLong(entry.getValue().trim());
+            if (entry.getKey().equalsIgnoreCase("Operation"))
+                this.operation = entry.getValue().trim();
+            if (entry.getKey().equalsIgnoreCase("Code"))
+                this.code = Integer.parseInt(entry.getValue().trim());
+            if (entry.getKey().equalsIgnoreCase("Result"))
+                this.result = entry.getValue().trim();
+            if (entry.getKey().equalsIgnoreCase("Status"))
+                this.status = entry.getValue().trim();
+            if (entry.getKey().equalsIgnoreCase("errorCode"))
+                this.errorCode = Integer.parseInt(entry.getValue().trim());
+            if (entry.getKey().equalsIgnoreCase("Message"))
+                this.message = entry.getValue().trim();
+            if (entry.getKey().equalsIgnoreCase("rebillAnchor"))
+                this.rebillAnchor = entry.getValue().trim();
+            if (entry.getKey().equalsIgnoreCase("ipCountry"))
+                this.ipCountry = entry.getValue().trim();
+            if (entry.getKey().equalsIgnoreCase("binCountry"))
+                this.binCountry = entry.getValue().trim();
+            if (entry.getKey().equalsIgnoreCase("SpecialConditions"))
+                this.specialConditions = entry.getValue().trim();
+            if (entry.getKey().equalsIgnoreCase("PaReq"))
+                this.paReq = entry.getValue().trim();
+            if (entry.getKey().equalsIgnoreCase("PD"))
+                this.pd = entry.getValue().trim();
+            if (entry.getKey().equalsIgnoreCase("AcsUrl"))
+                this.acsUrl = entry.getValue().trim();
+        }
     }
 }

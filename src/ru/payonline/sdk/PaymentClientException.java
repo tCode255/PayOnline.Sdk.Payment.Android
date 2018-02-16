@@ -9,4 +9,8 @@ public final class PaymentClientException extends Exception {
     public PaymentClientException(String message){
         super(message);
     }
+
+    public PaymentClientException(String message, Exception e){
+        super(message, e);
+    }
 }
